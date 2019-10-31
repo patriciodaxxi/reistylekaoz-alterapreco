@@ -1,0 +1,193 @@
+object drmPrincipal: TdrmPrincipal
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'Principal'
+  ClientHeight = 559
+  ClientWidth = 838
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object btnListar: TSpeedButton
+    Left = 619
+    Top = 20
+    Width = 97
+    Height = 32
+    Caption = 'Listar'
+    OnClick = btnListarClick
+  end
+  object btnSalvar: TSpeedButton
+    Left = 722
+    Top = 20
+    Width = 98
+    Height = 32
+    Caption = 'Salvar'
+  end
+  object SpeedButton1: TSpeedButton
+    Left = 295
+    Top = 25
+    Width = 27
+    Height = 22
+    Flat = True
+    Glyph.Data = {
+      E6040000424DE604000000000000360000002800000014000000140000000100
+      180000000000B0040000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFF6F8FDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFA0AFE73E60CFF7F8FDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB0BEEB153E
+      C5A0B1E7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB3C0EC1C44C7B1BEEBFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBEFFA728BDC3155CC113BC4002D
+      BF1740C64868D29FB0E7FFFFFFA0B0E7153EC5B4C1ECFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFE2E7F71D44C73458CDA3B3E8ECF0F9FFFFFFDAE1F5
+      738BDC1D46C73558CC1F46C8A1B1E7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFE4E8F81F46C7728ADCF9FAFDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1
+      F3FB274DCA3559CDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      4A6AD25F7AD8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEDF0
+      FA1E46C79EAFE6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD5DCF41841C6E5
+      EAF9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF728BDC
+      4868D2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF97A9E52F54CCF9FAFDFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD9E0F5163FC5FF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF708ADC3C5ECFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF002DC0FFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFF8A9FE23458CDFDFDFEFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEEF1FA123BC5FFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFB5C2EC2249C9EEF1FBFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFA2B2E83054CCFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFF1942C7A8B7E9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFF9FAFD3458CD738CDCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFB6C2ED1C43C7BAC5EEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFF7189DB1D45C7EDF0FAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFF6883D91C44C7A8B7E9F1F3FBFCFDFEFFFFFFF9FAFDE5EAF95E7AD71F47
+      C7E2E7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFB6C2EC1942C7224AC83457CC3D5ECF2F54CB1841C64B6BD3E4E8F8FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFB6C3ED8A9FE2708ADB97A9E6D5DCF4FFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFF}
+  end
+  object RadioGroup1: TRadioGroup
+    Left = 8
+    Top = 8
+    Width = 217
+    Height = 49
+    Caption = 'Consultar Por:'
+    TabOrder = 1
+  end
+  object cmbConsulta: TComboBox
+    Left = 16
+    Top = 26
+    Width = 201
+    Height = 21
+    Style = csDropDownList
+    ItemIndex = 0
+    TabOrder = 0
+    Text = 'Fabricante'
+    Items.Strings = (
+      'Fabricante'
+      'Se'#231#227'o'
+      'Grupo de ICMS'
+      'Produtos Pesados na Balan'#231'a')
+  end
+  object edtID: TEdit
+    Left = 231
+    Top = 26
+    Width = 58
+    Height = 21
+    TabOrder = 2
+  end
+  object edtNome: TEdit
+    Left = 328
+    Top = 26
+    Width = 285
+    Height = 21
+    TabOrder = 3
+  end
+  object grid: TDBGrid
+    Left = 8
+    Top = 63
+    Width = 812
+    Height = 418
+    DataSource = DS
+    TabOrder = 4
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        ReadOnly = True
+        Title.Caption = 'C'#243'digo'
+        Width = 94
+        Visible = True
+      end
+      item
+        Expanded = False
+        ReadOnly = True
+        Title.Caption = 'Nome do Produto'
+        Width = 460
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = 'Pre'#231'o de Venda'
+        Width = 86
+        Visible = True
+      end>
+  end
+  object Panel1: TPanel
+    Left = 8
+    Top = 487
+    Width = 161
+    Height = 64
+    Caption = 'Ajustar Percentual'
+    TabOrder = 5
+    VerticalAlignment = taAlignTop
+    object Label1: TLabel
+      Left = 63
+      Top = 31
+      Width = 19
+      Height = 19
+      Caption = '%'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object btnPerc: TSpeedButton
+      Left = 93
+      Top = 19
+      Width = 63
+      Height = 41
+      Caption = 'Ajustar'
+      OnClick = btnPercClick
+    end
+    object edtPerc: TEdit
+      Left = 8
+      Top = 29
+      Width = 49
+      Height = 21
+      TabOrder = 0
+    end
+  end
+  object DS: TDataSource
+    DataSet = dmod.Qry
+    Left = 608
+  end
+end

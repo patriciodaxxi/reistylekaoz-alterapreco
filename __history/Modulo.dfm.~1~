@@ -1,0 +1,5 @@
+object dmod: Tdmod
+  OldCreateOrder = False
+  Height = 581
+  Width = 923
+end

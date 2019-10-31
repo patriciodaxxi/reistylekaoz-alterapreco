@@ -1,0 +1,52 @@
+unit Principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.Buttons, Data.DB, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TdrmPrincipal = class(TForm)
+    btnListar: TSpeedButton;
+    btnSalvar: TSpeedButton;
+    cmbConsulta: TComboBox;
+    RadioGroup1: TRadioGroup;
+    edtID: TEdit;
+    edtNome: TEdit;
+    SpeedButton1: TSpeedButton;
+    grid: TDBGrid;
+    DS: TDataSource;
+    procedure btnListarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  drmPrincipal: TdrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+uses Modulo;
+
+procedure TdrmPrincipal.btnListarClick(Sender: TObject);
+begin
+  DMod.Qry.SQL.Clear;
+  DMod.Qry.SQL.Add
+    ('select F.id, F.nome, F.telefone, C.nome AS cargo from funcionarios F ');
+  DMod.Qry.SQL.Add('LEFT JOIN CARGOS C ON(F.cargo = C.id)');
+  DMod.Qry.SQL.Add(' where F.nome containing :pesquisa order by id');
+  DMod.Qry.ParamByName('pesquisa').Value := edtID.Text;
+  DMod.Qry.Open;
+  grid.Columns[0].FieldName := 'ID';
+  grid.Columns[1].FieldName := 'NOME';
+  grid.Columns[2].FieldName := 'TELEFONE';
+  grid.Columns[3].FieldName := 'CARGO';
+end;
+
+end.

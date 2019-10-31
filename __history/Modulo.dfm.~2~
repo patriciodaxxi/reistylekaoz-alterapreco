@@ -1,0 +1,19 @@
+object dmod: Tdmod
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 581
+  Width = 923
+  object FDCon: TFDConnection
+    Params.Strings = (
+      'Server=LOCALHOST'
+      'DriverID=FB'
+      'User_Name=sysdba'
+      'Password=masterkey')
+    Left = 24
+    Top = 8
+  end
+  object Qry: TFDQuery
+    Left = 120
+    Top = 8
+  end
+end
