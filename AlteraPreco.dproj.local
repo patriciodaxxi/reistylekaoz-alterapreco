@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2019/10/31 10:38:59.551,=\\srv-dc01\Usuarios\murilo\My Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/10/31 10:39:38.442,D:\WS\Alteração de Preços\Principal.dfm=\\srv-dc01\Usuarios\murilo\My Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2019/10/31 10:39:38.442,D:\WS\Alteração de Preços\Principal.pas=\\srv-dc01\Usuarios\murilo\My Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/10/31 10:39:45.679,D:\WS\Alteração de Preços\AlteraPreco.dproj=\\srv-dc01\Usuarios\murilo\My Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
