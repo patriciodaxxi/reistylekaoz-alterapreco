@@ -13,60 +13,48 @@ object drmPrincipal: TdrmPrincipal
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object btnListar: TSpeedButton
-    Left = 619
+    Left = 723
     Top = 20
     Width = 97
     Height = 32
     Caption = 'Listar'
     OnClick = btnListarClick
   end
-  object btnSalvar: TSpeedButton
-    Left = 722
-    Top = 20
-    Width = 98
-    Height = 32
-    Caption = 'Salvar'
-  end
   object RadioGroup1: TRadioGroup
     Left = 8
-    Top = 8
+    Top = 4
     Width = 217
-    Height = 49
+    Height = 86
     Caption = 'Consultar Por:'
     TabOrder = 1
   end
   object cmbConsulta: TComboBox
     Left = 16
-    Top = 26
+    Top = 31
     Width = 201
     Height = 21
     Style = csDropDownList
     ItemIndex = 0
     TabOrder = 0
     Text = 'Fabricante'
+    OnChange = cmbConsultaChange
     Items.Strings = (
       'Fabricante'
       'Se'#231#227'o'
       'Grupo de ICMS'
       'Produtos Pesados na Balan'#231'a')
   end
-  object edtNome: TEdit
-    Left = 328
-    Top = 26
-    Width = 285
-    Height = 21
-    TabOrder = 2
-  end
   object grid: TDBGrid
     Left = 8
-    Top = 63
+    Top = 96
     Width = 812
-    Height = 418
+    Height = 385
     DataSource = DS
-    TabOrder = 3
+    TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -100,12 +88,12 @@ object drmPrincipal: TdrmPrincipal
     Width = 189
     Height = 64
     Caption = 'Ajustar'
-    TabOrder = 4
+    TabOrder = 3
     VerticalAlignment = taAlignTop
     object lblValor: TLabel
       Left = 6
       Top = 31
-      Width = 32
+      Width = 19
       Height = 19
       Caption = '%'
       Font.Charset = DEFAULT_CHARSET
@@ -134,7 +122,7 @@ object drmPrincipal: TdrmPrincipal
       'Pre'#231'o de Custo'
       'Pre'#231'o de Venda'
       'Ambos')
-    TabOrder = 5
+    TabOrder = 4
   end
   object rdgFormaAjuste: TRadioGroup
     Left = 223
@@ -142,23 +130,24 @@ object drmPrincipal: TdrmPrincipal
     Width = 210
     Height = 64
     Caption = 'Forma de Ajuste'
-    ItemIndex = 1
+    ItemIndex = 0
     Items.Strings = (
       'Percentual'
       'Valor')
-    TabOrder = 6
+    TabOrder = 5
     OnClick = rdgFormaAjusteClick
   end
-  object RadioGroup4: TRadioGroup
+  object rdgTipoAjuste: TRadioGroup
     Left = 439
     Top = 487
     Width = 186
     Height = 64
     Caption = 'Tipo de ajuste'
+    ItemIndex = 0
     Items.Strings = (
       'Aumentar'
       'Diminuir')
-    TabOrder = 7
+    TabOrder = 6
   end
   object edtPerc: TEdit
     Left = 664
@@ -171,8 +160,66 @@ object drmPrincipal: TdrmPrincipal
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 8
+    TabOrder = 7
     OnKeyPress = edtPercKeyPress
+  end
+  object cmbPesquisa: TComboBox
+    Left = 272
+    Top = 21
+    Width = 438
+    Height = 21
+    Style = csDropDownList
+    TabOrder = 8
+    OnChange = cmbPesquisaChange
+  end
+  object cmbID: TComboBox
+    Left = 232
+    Top = 21
+    Width = 33
+    Height = 21
+    Style = csSimple
+    Enabled = False
+    TabOrder = 9
+  end
+  object cmbGrupo: TComboBox
+    Left = 272
+    Top = 47
+    Width = 438
+    Height = 21
+    Style = csDropDownList
+    TabOrder = 10
+    Visible = False
+    OnChange = cmbGrupoChange
+  end
+  object cmbidGrupo: TComboBox
+    Left = 232
+    Top = 47
+    Width = 33
+    Height = 21
+    Style = csSimple
+    Enabled = False
+    TabOrder = 11
+    Visible = False
+  end
+  object cmbSubGrupo: TComboBox
+    Left = 272
+    Top = 73
+    Width = 438
+    Height = 21
+    Style = csDropDownList
+    TabOrder = 12
+    Visible = False
+    OnChange = cmbSubGrupoChange
+  end
+  object cmbIDSub: TComboBox
+    Left = 232
+    Top = 73
+    Width = 33
+    Height = 21
+    Style = csSimple
+    Enabled = False
+    TabOrder = 13
+    Visible = False
   end
   object DS: TDataSource
     DataSet = dmod.Qry

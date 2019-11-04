@@ -1,0 +1,343 @@
+unit Principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.Buttons, Data.DB, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TdrmPrincipal = class(TForm)
+    btnListar: TSpeedButton;
+    btnSalvar: TSpeedButton;
+    cmbConsulta: TComboBox;
+    RadioGroup1: TRadioGroup;
+    grid: TDBGrid;
+    DS: TDataSource;
+    Panel1: TPanel;
+    lblValor: TLabel;
+    btnPerc: TSpeedButton;
+    RadioGroup2: TRadioGroup;
+    rdgFormaAjuste: TRadioGroup;
+    RadioGroup4: TRadioGroup;
+    edtPerc: TEdit;
+    cmbPesquisa: TComboBox;
+    cmbID: TComboBox;
+    cmbGrupo: TComboBox;
+    cmbidGrupo: TComboBox;
+    cmbSubGrupo: TComboBox;
+    cmbIDSub: TComboBox;
+    procedure listagrupoicms;
+    procedure bloqueacmbbox;
+    procedure liberacmbbox;
+    procedure listapesquisa;
+    procedure listarsubgrupo;
+    procedure ajustacmbbox;
+    procedure listagrupo;
+    procedure listasecao;
+    procedure listafabricante;
+    procedure listarprodutos;
+    procedure ajustarpercentual;
+    procedure btnListarClick(Sender: TObject);
+    procedure btnPercClick(Sender: TObject);
+    procedure rdgFormaAjusteClick(Sender: TObject);
+    procedure edtPercKeyPress(Sender: TObject; var Key: Char);
+    procedure FormCreate(Sender: TObject);
+    procedure cmbPesquisaChange(Sender: TObject);
+    procedure cmbGrupoChange(Sender: TObject);
+    procedure cmbSubGrupoChange(Sender: TObject);
+    procedure cmbConsultaChange(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  drmPrincipal: TdrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+uses Modulo;
+
+procedure TdrmPrincipal.ajustacmbbox;
+begin
+    cmbID.ItemIndex := cmbPesquisa.ItemIndex;
+    cmbidGrupo.ItemIndex := cmbGrupo.ItemIndex;
+    cmbIDSub.ItemIndex := cmbSubGrupo.ItemIndex;
+end;
+
+procedure TdrmPrincipal.ajustarpercentual;
+VAR
+perc: Float64;
+valoratual: Float64;
+begin
+  dmod.Qry.First;
+  while not dmod.Qry.Eof do
+  begin
+     valoratual := dmod.Qry.FieldByName('VALOR_PRO').Value;
+     perc := (valoratual * StrToFloat(edtPerc.Text)) / 100;
+
+     dmod.Qry.edit;
+     dmod.Qry.FieldValues['VALOR_PRO'] := valoratual + perc;
+     dmod.Qry.Post;
+     dmod.Qry.Next;
+     perc := 0;
+  end;
+
+end;
+
+procedure TdrmPrincipal.bloqueacmbbox;
+begin
+cmbGrupo.Visible := False;
+  cmbidGrupo.Visible := False;
+  cmbSubGrupo.Visible := False;
+  cmbIDSub.Visible := False;
+end;
+
+procedure TdrmPrincipal.btnListarClick(Sender: TObject);
+begin
+   listarprodutos;
+end;
+
+procedure TdrmPrincipal.btnPercClick(Sender: TObject);
+begin
+if MessageDlg('Deseja mosmo efetuar o ajuste?', mtConfirmation,
+  [mbYes, mbNo], 0) = mrYes then
+begin
+ajustarpercentual;
+listarprodutos;
+end;
+
+
+
+
+end;
+
+procedure TdrmPrincipal.cmbConsultaChange(Sender: TObject);
+begin
+   if cmbConsulta.ItemIndex = 1  then
+   begin
+     liberacmbbox;
+   end
+   else
+   begin
+     bloqueacmbbox;
+   end;
+   listapesquisa;
+end;
+
+procedure TdrmPrincipal.cmbGrupoChange(Sender: TObject);
+begin
+ajustacmbbox;
+listarsubgrupo;
+end;
+
+procedure TdrmPrincipal.cmbPesquisaChange(Sender: TObject);
+begin
+ajustacmbbox;
+listagrupo;
+end;
+
+procedure TdrmPrincipal.cmbSubGrupoChange(Sender: TObject);
+begin
+ajustacmbbox;
+end;
+
+procedure TdrmPrincipal.edtPercKeyPress(Sender: TObject; var Key: Char);
+begin
+  if not (key in ['0'..'9',',',#8]) then key :=#0;
+end;
+
+procedure TdrmPrincipal.FormCreate(Sender: TObject);
+begin
+ bloqueacmbbox;
+ listapesquisa;
+
+end;
+
+procedure TdrmPrincipal.liberacmbbox;
+begin
+  cmbGrupo.Visible := true;
+  cmbidGrupo.Visible := true;
+  cmbSubGrupo.Visible := true;
+  cmbIDSub.Visible := true;
+end;
+
+procedure TdrmPrincipal.listafabricante;
+begin
+  cmbID.Clear;
+  cmbPesquisa.Clear;
+  DMod.Qry.SQL.Clear;
+  DMod.Qry.SQL.Add('select * from laboratorio  order by cod_lab');
+  DMod.Qry.Open();
+  DMod.Qry.First;
+
+  while not dmod.Qry.Eof do
+  begin
+     cmbID.Items.Add(dmod.Qry.FieldByName('COD_LAB').Value);
+     cmbPesquisa.Items.Add(dmod.Qry.FieldByName('NOME_LAB').Value);
+     dmod.Qry.Next;
+  end;
+  dmod.Qry.SQL.Clear;
+  dmod.Qry.Close;
+end;
+
+procedure TdrmPrincipal.listagrupo;
+begin
+cmbGrupo.Clear;
+  cmbidGrupo.Clear;
+  cmbSubGrupo.Clear;
+  cmbIDSub.Clear;
+DMod.Qry.SQL.Clear;
+  DMod.Qry.SQL.Add('select * from secao_grupo where cod_sec = :pesquisa order by cod_grupo');
+  dmod.Qry.ParamByName('pesquisa').Value := cmbID.Text;
+  DMod.Qry.Open();
+  DMod.Qry.First;
+
+  while not dmod.Qry.Eof do
+  begin
+     cmbidGrupo.Items.Add(dmod.Qry.FieldByName('COD_grupo').Value);
+     cmbGrupo.Items.Add(dmod.Qry.FieldByName('descricao').Value);
+     dmod.Qry.Next;
+  end;
+  dmod.Qry.SQL.Clear;
+  dmod.Qry.Close;
+  cmbGrupo.ItemIndex := 0;
+end;
+
+procedure TdrmPrincipal.listagrupoicms;
+begin
+   cmbPesquisa.Clear;
+  cmbID.Clear;
+
+DMod.Qry.SQL.Clear;
+  DMod.Qry.SQL.Add('select * from grupo_icms order by cod_grp');
+  DMod.Qry.Open();
+  DMod.Qry.First;
+
+  while not dmod.Qry.Eof do
+  begin
+     cmbID.Items.Add(dmod.Qry.FieldByName('COD_grp').Value);
+     cmbPesquisa.Items.Add(dmod.Qry.FieldByName('nome_grp').Value);
+     dmod.Qry.Next;
+  end;
+  dmod.Qry.SQL.Clear;
+  dmod.Qry.Close;
+  cmbPesquisa.ItemIndex := 0;
+end;
+
+procedure TdrmPrincipal.listapesquisa;
+begin
+cmbPesquisa.Clear;
+if cmbConsulta.ItemIndex = 0  then
+ begin
+   listafabricante;
+ end
+ else if cmbConsulta.ItemIndex = 1 then
+      begin
+        listasecao;
+      end
+ else if cmbConsulta.ItemIndex = 2 then
+    begin
+        listagrupoicms;
+    end;
+end;
+
+procedure TdrmPrincipal.listarprodutos;
+begin
+
+  DMod.Qry.SQL.Clear;
+  DMod.Qry.SQL.Add
+    ('select p.cod_pro, p.nome_pro, p.valor_pro from produto p');
+  if cmbConsulta.ItemIndex = 0 then
+  begin
+      DMod.Qry.SQL.Add(' where p.cod_sec = :pesquisa');
+  end else if cmbConsulta.ItemIndex = 1 then
+  begin
+    DMod.Qry.SQL.Add(' where p.cod_sec = :pesquisa');
+    DMod.Qry.SQL.Add(' and p.cod_grupo = :grupo');
+    DMod.Qry.SQL.Add(' and p.sub_grupo = :subgrupo');
+    DMod.Qry.ParamByName('grupo').Value := cmbidGrupo.Text;
+    DMod.Qry.ParamByName('subgrupo').Value := cmbIDSub.Text;
+  end
+  else if cmbConsulta.ItemIndex = 2 then
+  begin
+    DMod.Qry.SQL.Add(' where p.icms_cont_est = :pesquisa');
+  end;
+
+  DMod.Qry.ParamByName('pesquisa').Value := cmbID.Text;
+  DMod.Qry.Open;
+  grid.Columns[0].FieldName := 'COD_PRO';
+  grid.Columns[1].FieldName := 'NOME_PRO';
+  grid.Columns[2].FieldName := 'VALOR_PRO';
+  GRID.Columns[0].Width := 60;
+  GRID.Columns[1].Width := 460;
+  GRID.Columns[2].Width := 60;
+
+
+end;
+
+procedure TdrmPrincipal.listarsubgrupo;
+begin
+  cmbIDSub.Clear;
+  cmbSubGrupo.Clear;
+  DMod.Qry.SQL.Clear;
+  DMod.Qry.SQL.Add('select * from secao_grupo_subgrupo  where cod_sec = :pesquisa and cod_grupo = :grupo order by cod_subgrupo');
+  dmod.Qry.ParamByName('pesquisa').Value := cmbID.Text;
+  dmod.Qry.ParamByName('grupo').Value := cmbidGrupo.Text;
+  DMod.Qry.Open();
+  DMod.Qry.First;
+
+  while not dmod.Qry.Eof do
+  begin
+     cmbIDSub.Items.Add(dmod.Qry.FieldByName('COD_subgrupo').Value);
+     cmbSubGrupo.Items.Add(dmod.Qry.FieldByName('descricao').Value);
+     dmod.Qry.Next;
+  end;
+  dmod.Qry.SQL.Clear;
+  dmod.Qry.Close;
+  cmbSubGrupo.ItemIndex := 0;
+end;
+
+procedure TdrmPrincipal.listasecao;
+begin
+  cmbPesquisa.Clear;
+  cmbID.Clear;
+  cmbidGrupo.Clear;
+  cmbGrupo.Clear;
+  cmbIDSub.Clear;
+  cmbSubGrupo.Clear;
+  DMod.Qry.SQL.Clear;
+  DMod.Qry.SQL.Add('select * from secao  order by cod_sec');
+  DMod.Qry.Open();
+  DMod.Qry.First;
+
+  while not dmod.Qry.Eof do
+  begin
+     cmbID.Items.Add(dmod.Qry.FieldByName('COD_sec').Value);
+     cmbPesquisa.Items.Add(dmod.Qry.FieldByName('NOME_sec').Value);
+     dmod.Qry.Next;
+  end;
+  dmod.Qry.SQL.Clear;
+  dmod.Qry.Close;
+  cmbPesquisa.ItemIndex := 0;
+end;
+
+procedure TdrmPrincipal.rdgFormaAjusteClick(Sender: TObject);
+begin
+if rdgFormaAjuste.ItemIndex = 0 then
+      begin
+        lblValor.Caption := '%';
+
+      end
+      else
+      begin
+        lblValor.Caption := 'R$';
+      end;
+end;
+
+end.

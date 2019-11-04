@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions>
-    <Transaction>2019/10/31 10:38:59.551,=\\srv-dc01\Usuarios\murilo\My Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2019/10/31 10:39:38.442,D:\WS\Alteração de Preços\Principal.dfm=\\srv-dc01\Usuarios\murilo\My Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2019/10/31 10:39:38.442,D:\WS\Alteração de Preços\Principal.pas=\\srv-dc01\Usuarios\murilo\My Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2019/10/31 10:39:45.679,D:\WS\Alteração de Preços\AlteraPreco.dproj=\\srv-dc01\Usuarios\murilo\My Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2019/10/31 10:48:20.164,=D:\WS\Alteração de Preços\Unit1.pas</Transaction>
-    <Transaction>2019/10/31 10:48:56.276,D:\WS\Alteração de Preços\AlteraPreco.pas=D:\WS\Alteração de Preços\Unit1.pas</Transaction>
-    <Transaction>2019/10/31 10:48:56.276,D:\WS\Alteração de Preços\AlteraPreco.dfm=D:\WS\Alteração de Preços\Unit1.dfm</Transaction>
-    <Transaction>2019/10/31 10:50:52.088,=D:\WS\Alteração de Preços\Unit1.pas</Transaction>
-    <Transaction>2019/10/31 10:51:29.700,D:\WS\Alteração de Preços\Modulo.pas=D:\WS\Alteração de Preços\Unit1.pas</Transaction>
-    <Transaction>2019/10/31 10:51:29.700,D:\WS\Alteração de Preços\Modulo.dfm=D:\WS\Alteração de Preços\Unit1.dfm</Transaction>
-    <Transaction>2019/10/31 11:18:10.479,D:\WS\Alteração de Preços\AlteraPreco.pas=</Transaction>
+	<Transactions>
+    <Transaction>2019/10/31 10:38:59.000.551,=\\srv-dc01\Usuarios\murilo\My Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/10/31 10:39:38.000.442,D:\WS\Alteração de Preços\Principal.dfm=\\srv-dc01\Usuarios\murilo\My Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2019/10/31 10:39:38.000.442,D:\WS\Alteração de Preços\Principal.pas=\\srv-dc01\Usuarios\murilo\My Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/10/31 10:39:45.000.679,D:\WS\Alteração de Preços\AlteraPreco.dproj=\\srv-dc01\Usuarios\murilo\My Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2019/10/31 10:48:20.000.164,=D:\WS\Alteração de Preços\Unit1.pas</Transaction>
+    <Transaction>2019/10/31 10:48:56.000.276,D:\WS\Alteração de Preços\AlteraPreco.pas=D:\WS\Alteração de Preços\Unit1.pas</Transaction>
+    <Transaction>2019/10/31 10:48:56.000.276,D:\WS\Alteração de Preços\AlteraPreco.dfm=D:\WS\Alteração de Preços\Unit1.dfm</Transaction>
+    <Transaction>2019/10/31 10:50:52.000.088,=D:\WS\Alteração de Preços\Unit1.pas</Transaction>
+    <Transaction>2019/10/31 10:51:29.000.700,D:\WS\Alteração de Preços\Modulo.pas=D:\WS\Alteração de Preços\Unit1.pas</Transaction>
+    <Transaction>2019/10/31 10:51:29.000.700,D:\WS\Alteração de Preços\Modulo.dfm=D:\WS\Alteração de Preços\Unit1.dfm</Transaction>
+    <Transaction>2019/10/31 11:18:10.000.479,D:\WS\Alteração de Preços\AlteraPreco.pas=</Transaction>
   </Transactions>
 </BorlandProject>
